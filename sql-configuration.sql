@@ -1,8 +1,8 @@
 -- Create the database
-CREATE DATABASE db_isuga_capstone;
+CREATE DATABASE db_batch5_ems;
 
 -- Use the created database
-USE db_isuga_capstone;
+USE db_batch5_ems;
 
 -- Create users table
 CREATE TABLE tbl_users (
@@ -13,6 +13,23 @@ CREATE TABLE tbl_users (
      password VARCHAR(255) NOT NULL,
      role_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO TABLE ( name, email, password, role)
+VALUES
+    ('admin', 'admin@admin.com', '123456', 'admin');
+
+CREATE TABLE Departments (
+    department_id INT PRIMARY KEY AUTO_INCREMENT,
+    department_name VARCHAR(100) NOT NULL,
+    manager_id INT
+);
+
+CREATE TABLE Positions (
+    position_id INT PRIMARY KEY AUTO_INCREMENT,
+    position_name VARCHAR(100) NOT NULL,
+    description TEXT
 );
 
 CREATE TABLE Employees (
@@ -32,18 +49,7 @@ CREATE TABLE Employees (
     FOREIGN KEY (department_id) REFERENCES Departments(department_id)
 );
 
-CREATE TABLE Departments (
-    department_id INT PRIMARY KEY AUTO_INCREMENT,
-    department_name VARCHAR(100) NOT NULL,
-    manager_id INT,  -- Manager of the department
-    FOREIGN KEY (manager_id) REFERENCES Employees(employee_id)
-);
 
-CREATE TABLE Positions (
-    position_id INT PRIMARY KEY AUTO_INCREMENT,
-    position_name VARCHAR(100) NOT NULL,
-    description TEXT
-);
 
 CREATE TABLE Payroll (
     payroll_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -98,3 +104,4 @@ CREATE TABLE Employee_Documents (
     upload_date DATE,
     FOREIGN KEY (employee_id) REFERENCES Employees(employee_id)
 );
+
